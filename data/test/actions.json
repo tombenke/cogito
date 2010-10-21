@@ -1,0 +1,17 @@
+{ "docs": [
+  {
+    "type": "action",
+    "_id": "action1",
+    "owner": "tombenke",
+    "assignedTo": "tombenke",
+    "summary": "Create the cogito web application skeleton with initial data",
+    "estimatedEffort": "100",
+    "effortDimension": "hour",
+    "created": "2010-10-20",
+    "started": "2010-10-20",
+    "finished": "",
+    "status": "CREATED",
+    "tags": ["task","GTD"]
+  }
+]
+}

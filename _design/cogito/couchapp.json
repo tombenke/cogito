@@ -1,0 +1,12 @@
+{
+    "name": "Cogito - a GTD like application running on CouchDB",
+    "description": "Cogito",
+     "env" : {
+        "default" : {
+          "db" : "http://admin:admin@localhost:5984/cogito"
+        },
+        "public" : {
+          "db" : "http://tombenke.couchone.com/cogito"
+        }
+    }
+}

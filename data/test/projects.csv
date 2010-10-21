@@ -1,0 +1,4 @@
+"type","_id","sponsor","manager","created","started","deadline","summary","details","tags"
+"project","cogito","tombenke","tombenke",2010-10-20,,2010-12-15,"cogito GTD-like web application","Develop a web based application with CouchDB","['project','GTD']"
+"project","csvconv","tombenke","tombenke",2010-06-01,,2010-10-18,"CSV converter utility","Develop a utility to convert CSV files to XML and to JSON format","['project','CouchDB','CSV']"
+"project","couchme","tombenke","tombenke",2010-09-15,,2010-12-23,"CouchMe how to use CouchDB","Readings about how to develop web applications with CouchDB and CouchApp","['project','CouchDB','CouchApp']"

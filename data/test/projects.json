@@ -1,0 +1,39 @@
+{ "docs": [
+  {
+    "type": "project",
+    "_id": "cogito",
+    "sponsor": "tombenke",
+    "manager": "tombenke",
+    "created": "2010-10-20",
+    "started": "",
+    "deadline": "2010-12-15",
+    "summary": "cogito GTD-like web application",
+    "details": "Develop a web based application with CouchDB",
+    "tags": ["project","GTD"]
+  },
+  {
+    "type": "project",
+    "_id": "csvconv",
+    "sponsor": "tombenke",
+    "manager": "tombenke",
+    "created": "2010-06-01",
+    "started": "",
+    "deadline": "2010-10-18",
+    "summary": "CSV converter utility",
+    "details": "Develop a utility to convert CSV files to XML and to JSON format",
+    "tags": ["project","CouchDB","CSV"]
+  },
+  {
+    "type": "project",
+    "_id": "couchme",
+    "sponsor": "tombenke",
+    "manager": "tombenke",
+    "created": "2010-09-15",
+    "started": "",
+    "deadline": "2010-12-23",
+    "summary": "CouchMe how to use CouchDB",
+    "details": "Readings about how to develop web applications with CouchDB and CouchApp",
+    "tags": ["project","CouchDB","CouchApp"]
+  }
+]
+}

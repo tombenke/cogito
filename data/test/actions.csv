@@ -1,0 +1,2 @@
+"type","_id","owner","assignedTo","summary","estimatedEffort","effortDimension","created","started","finished","status","tags"
+"action","action1","tombenke","tombenke","Create the cogito web application skeleton with initial data",100,"hour",2010-10-20,2010-10-20,,"CREATED","['task','GTD']"
