@@ -15,7 +15,8 @@ declare -rx local_password=admin
 
 #local settings
 declare -rx local_host=localhost:5984
-declare -rx local_dburl=http://${public_username}:${public_password}@${local_host}/${db}
+#declare -rx local_dburl=http://${local_username}:${local_password}@${local_host}/${db}
+declare -rx local_dburl=http://${local_host}/${db}
 
 # Default is the 'local_dburl'
 declare -x  dburl=${local_dburl}
@@ -25,10 +26,10 @@ if [ $1 == 'public' ] ; then
 fi
 
 # Delete the database if exists
-#curl -X DELETE ${dburl}
+curl -X DELETE ${dburl}
 
 # Create an empty database
-#curl -X PUT ${dburl}
+curl -X PUT ${dburl}
 
 # Upload the data files listed in 'datafiles'
 for datafile in $datafiles
