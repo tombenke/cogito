@@ -3,7 +3,7 @@
     "description": "Cogito",
      "env" : {
         "default" : {
-          "db" : "http://localhost:5984/cogito"
+          "db" : "http://admin:admin@localhost:5984/cogito"
         },
         "public" : {
           "db" : "http://tombenke.couchone.com/cogito"

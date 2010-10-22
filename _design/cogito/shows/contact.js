@@ -1,15 +1,18 @@
 function( doc, req )
-{  
+{
     var ddoc = this;
+    var pageTemplate = ddoc.templates.documentNotFound;
+
     var Mustache = require( "vendor/couchapp/lib/mustache" );
     var path = require( "vendor/couchapp/lib/path" ).init( req );
-/*
-    var text = "Markdown *rocks*.";
-    var markdown = require( "vendor/couchapp/lib/markdown" );
-    var md_html = markdown.encode( text );
-*/
+    
+    if( doc )
+    {
+        pageTemplate = ddoc.templates.contact;
+    }
+
     return Mustache.to_html(
-        ddoc.templates.index,
+        pageTemplate,
         {
             header : {assets : path.asset()},
             top_menu : {},
