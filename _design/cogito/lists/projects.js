@@ -8,7 +8,7 @@ function( head, req )
     provides( 'html', function()
     {
         send( Mustache.to_html(
-            ddoc.templates.contacts,
+            ddoc.templates.projects,
             {
                 header : {assets : path.asset()},
                 top_menu : {},
@@ -22,10 +22,9 @@ function( head, req )
                 rows : head.rows,
                 userCtx : head.userCtx,
                 assets : path.asset(),
-                contact_list : List.renderItem()
+                project_list : List.renderItem()
             },
             ddoc.templates.partials
         ));
     });
 }
-

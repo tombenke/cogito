@@ -1,0 +1,22 @@
+<div id="main">
+    <h1>Contact details</h1>
+
+    <div class="dir_contacto">
+        {{#doc}}
+        <h5>{{familyName}} {{sureName}}</h5>
+
+        <table width="100%" border="0" id="contactos">
+            <tr><td width="25%">owner:</td><td><a href="/cogito/_design/cogito/_show/contact/{{owner}}">{{owner}}</a></td></tr>
+            <tr><td width="25%">assignedTo:</td><td><a href="/cogito/_design/cogito/_show/contact/{{assignedTo}}">{{assignedTo}}</a></td></tr>
+            <tr><td width="25%">summary:</td><td>{{summary}}</td></tr>
+            <tr><td width="25%">estimatedEffort:</td><td>{{estimatedEffort}}</td></tr>
+            <tr><td width="25%">effortDimension:</td><td>{{effortDimension}}</td></tr>
+            <tr><td width="25%">created:</td><td>{{created}}</td></tr>
+            <tr><td width="25%">started:</td><td>{{started}}</td></tr>
+            <tr><td width="25%">finished:</td><td>{{finished}}</td></tr>
+            <tr><td width="25%">status:</td><td>{{status}}</td></tr>
+            <tr><td width="25%">tags:</td><td>{{tags}}</td></tr>
+        </table>
+        {{/doc}}
+    </div>
+</div>

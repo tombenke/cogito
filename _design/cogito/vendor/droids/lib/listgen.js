@@ -78,3 +78,26 @@ exports.to_xml = function( head, req )
         return "</feed>";
     });
 }
+
+// Helpers for writing server-side _list functions, borrowed from couchdb lib
+exports.withRows = function( fun )
+{
+    var f = function()
+    {
+        var row = getRow();
+        return row && fun( row );
+    };
+    f.iterator = true;
+    return f;
+}
+
+exports.send = function( chunk )
+{
+    send( chunk + "\n" )
+}
+
+exports.renderItem = exports.withRows( function( row )
+{
+        var v = row.value;
+        return v;
+})

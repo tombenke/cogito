@@ -1,98 +1,19 @@
 <div id="main">
-    <h1>My Contacts</h1>
+    <h1>Contacts</h1>
     <div class="dir_contacto">
-        <h5>Pedro Castanheira</h5>
+
         <table width="100%" border="0" id="contactos">
             <tr class="title">
-                <td width="22%">Empresa</td>
-                <td width="22%">Fun&ccedil;&atilde;o</td>
-                <td width="21%">Tel</td>
-                <td width="13%">Fax</td>
-                <td width="22%">e-mail</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>web</td>
+                <td>e-mail</td>
             </tr>
-            <tr>
-                <td>WeDesignIt</td>
-                <td>Consultor</td>
-                <td>212566652</td>
-                <td>212562336</td>
-                <td>p.castanheira@WeDesignIt.pt</td>
-            </tr>
-        </table>
-    </div>
-    <div class="dir_contacto">
-        <h5>Manuel Santos carvalho </h5>
-        <table width="100%" border="0" id="contactos">
-            <tr class="title">
-                <td width="22%">Empresa</td>
-                <td width="22%">Fun&ccedil;&atilde;o</td>
-                <td width="21%">Tel</td>
-                <td width="13%">Fax</td>
-                <td width="22%">e-mail</td>
-            </tr>
-            <tr>
-                <td>WeDesignIt</td>
-                <td>Consultor</td>
-                <td>212566652</td>
-                <td>212562336</td>
-                <td>p.castanheira@WeDesignIt.pt</td>
-            </tr>
-        </table>
-    </div>
-    <div class="dir_contacto">
-        <h5>Jos&eacute; Marcos Catarino  </h5>
-        <table width="100%" border="0" id="contactos">
-            <tr class="title">
-                <td width="22%">Empresa</td>
-                <td width="22%">Fun&ccedil;&atilde;o</td>
-                <td width="21%">Tel</td>
-                <td width="13%">Fax</td>
-                <td width="22%">e-mail</td>
-            </tr>
-            <tr>
-                <td>WeDesignIt</td>
-                <td>Consultor</td>
-                <td>212566652</td>
-                <td>212562336</td>
-                <td>p.castanheira@WeDesignIt.pt</td>
-            </tr>
-        </table>
-    </div>
-    <div class="dir_contacto">
-        <h5>Carlos Dinis Santos Palhota </h5>
-        <table width="100%" border="0" id="contactos">
-            <tr class="title">
-                <td width="22%">Empresa</td>
-                <td width="22%">Fun&ccedil;&atilde;o</td>
-                <td width="21%">Tel</td>
-                <td width="13%">Fax</td>
-                <td width="22%">e-mail</td>
-            </tr>
-            <tr>
-                <td>WeDesignIt</td>
-                <td>Consultor</td>
-                <td>212566652</td>
-                <td>212562336</td>
-                <td>p.castanheira@WeDesignIt.pt</td>
-            </tr>
-        </table>
-    </div>
-    <div class="dir_contacto">
-        <h5>Carla Lopes Santana </h5>
-        <table width="100%" border="0" id="contactos">
-            <tr class="title">
-                <td width="22%">Empresa</td>
-                <td width="22%">Fun&ccedil;&atilde;o</td>
-                <td width="21%">Tel</td>
-                <td width="13%">Fax</td>
-                <td width="22%">e-mail</td>
-            </tr>
-            <tr>
-                <td>WeDesignIt</td>
-                <td>Consultor</td>
-                <td>212566652</td>
-                <td>212562336</td>
-                <td>p.castanheira@WeDesignIt.pt</td>
-            </tr>
+
+        {{#contact_list}}
+            {{>contact_list_item}}
+        {{/contact_list}}
+
         </table>
     </div>
 </div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    {{>html_head}}
+
+    <body>
+
+        <!-- wrap starts here -->
+        <div id="wrap">
+
+            {{>header}}
+
+            {{>top_menu}}
+
+            {{>left_sidebar}}
+
+            {{>actions}}
+
+            {{>right_sidebar}}
+
+        </div>
+        <!-- wrap ends here -->
+
+        {{>footer}}
+
+    </body>
+    {{>scripts}}
+    <script type="text/javascript" charset="utf-8">
+    $.couch.app(function(app) {
+    //        var path = app.require("vendor/couchapp/lib/path").init(app.req);
+      });
+    </script>
+</html>
