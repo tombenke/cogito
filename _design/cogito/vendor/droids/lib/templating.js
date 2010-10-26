@@ -2,6 +2,9 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
 {
     var Mustache = require( "vendor/couchapp/lib/mustache" );
     var path = require( "vendor/couchapp/lib/path" ).init( req );
+    var assets = path.asset();
+    var listPath = path.list();
+    var showPath = path.show();
 
     provides( 'html', function()
     {
@@ -15,29 +18,29 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
         send( Mustache.to_html(
             ddoc.templates.main,
             {
-                header : {assets : path.asset()},
+                header : { assets : assets },
                 top_menu : {
-                    listPath : path.list(),
-                    showPath : path.show()
+                    listPath : listPath,
+                    showPath : showPath
                 },
                 left_sidebar : {
-                    listPath : path.list(),
-                    showPath : path.show()
+                    listPath : listPath,
+                    showPath : showPath
                 },
                 right_sidebar : {},
-                scripts : {},
+                assets : assets,
+                scripts : { assets : assets },
                 footer : {},
                 head : head,
                 req : req,
                 rows : head.rows,
                 userCtx : head.userCtx,
-                assets : path.asset(),
                 main : Mustache.to_html(
                     ddoc.templates.partials[ template_name ],
                     {
-                        assets : path.asset(),
-                        listPath : path.list(),
-                        showPath : path.show(),
+                        assets : assets,
+                        listPath : listPath,
+                        showPath : showPath,
                         item_list : items
                     },
                     ddoc.templates.partials
@@ -54,6 +57,9 @@ exports.wrap_show_into_template = function( doc, req, ddoc, template_name )
 
     var Mustache = require( "vendor/couchapp/lib/mustache" );
     var path = require( "vendor/couchapp/lib/path" ).init( req );
+    var assets = path.asset();
+    var listPath = path.list();
+    var showPath = path.show();
 
     if( doc )
     {
@@ -63,27 +69,27 @@ exports.wrap_show_into_template = function( doc, req, ddoc, template_name )
     send( Mustache.to_html(
         ddoc.templates.main,
         {
-            header : {assets : path.asset()},
+            header : { assets : assets },
             top_menu : {
-                listPath : path.list(),
-                showPath : path.show()
+                listPath : listPath,
+                showPath : showPath
             },
             left_sidebar : {
-                listPath : path.list(),
-                showPath : path.show()
+                listPath : listPath,
+                showPath : showPath
             },
             right_sidebar : {},
-            scripts : {},
+            assets : assets,
+            scripts : { assets : assets },
             footer : {},
-            assets : path.asset(),
-            listPath : path.list(),
-            showPath : path.show(),
+            listPath : listPath,
+            showPath : showPath,
             main : Mustache.to_html(
                 pageTemplate,
                 {
-                    assets : path.asset(),
-                    listPath : path.list(),
-                    showPath : path.show(),
+                    assets : assets,
+                    listPath : listPath,
+                    showPath : showPath,
                     doc : doc,
                     docid : JSON.stringify((doc && doc._id) || null)
                 },
@@ -100,6 +106,9 @@ exports.wrap_mdtext_into_template = function( doc, req, ddoc, md_name )
 
     var Mustache = require( "vendor/couchapp/lib/mustache" );
     var path = require( "vendor/couchapp/lib/path" ).init( req );
+    var assets = path.asset();
+    var listPath = path.list();
+    var showPath = path.show();
     var markdown = require( "vendor/couchapp/lib/markdown" );
 
     var text = ddoc.mdtext[ md_name ];
@@ -113,19 +122,19 @@ exports.wrap_mdtext_into_template = function( doc, req, ddoc, md_name )
     send( Mustache.to_html(
         ddoc.templates.main,
         {
-            header : {assets : path.asset()},
+            header : { assets : assets },
             top_menu : {
-                listPath : path.list(),
-                showPath : path.show()
+                listPath : listPath,
+                showPath : showPath
             },
             left_sidebar : {
-                listPath : path.list(),
-                showPath : path.show()
+                listPath : listPath,
+                showPath : showPath
             },
             right_sidebar : {},
-            scripts : {},
+            assets : assets,
+            scripts : { assets : assets },
             footer : {},
-            assets : path.asset(),
             main : html
         },
         ddoc.templates.partials
