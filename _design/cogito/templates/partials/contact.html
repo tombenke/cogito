@@ -1,23 +1,21 @@
-<div id="main">
-    <h1>Contact details</h1>
+<h1>Contact details</h1>
 
-    <div class="dir_contacto">
-        {{#doc}}
-        <h5>{{familyName}} {{sureName}}</h5>
+<div class="dir_contacto">
+    {{#doc}}
+    <h5>{{familyName}} {{sureName}}</h5>
 
-        <table width="100%" border="0" id="contactos">
-            <tr><td width="25%">family name:</td><td>{{familyName}}</td></tr>
-            <tr><td width="25%">sure name:</td><td>{{sureName}}</td></tr>
-            <tr><td width="25%">company:</td><td>{{company}}</td></tr>
-            <tr><td width="25%">tax number:</td><td>{{taxIdNumber}}</td></tr>
-            <tr><td width="25%">address:</td><td>{{zipCode}} {{city}}, {{street}} {{number}}</td></tr>
-            <tr><td width="25%">mobile</td><td>{{mobile}}</td></tr>
-            <tr><td width="25%">phone</td><td>{{phone}}</td></tr>
-            <tr><td width="25%">fax</td><td>{{fax}}</td></tr>
-            <tr><td width="25%">email</td><td><a href="mailto:{{email}}">{{email}}</a></td></tr>
-            <tr><td width="25%">web</td><td><a href="{{web}}">{{web}}</a></td></tr>
-            <tr><td width="25%">date of birth</td><td>{{dateOfBirth}}</td></tr>
-        </table>
-        {{/doc}}
-    </div>
+    <table width="100%" border="0" id="contactos">
+        <tr><td width="25%">family name:</td><td>{{familyName}}</td></tr>
+        <tr><td width="25%">sure name:</td><td>{{sureName}}</td></tr>
+        <tr><td width="25%">company:</td><td>{{company}}</td></tr>
+        <tr><td width="25%">tax number:</td><td>{{taxIdNumber}}</td></tr>
+        <tr><td width="25%">address:</td><td>{{zipCode}} {{city}}, {{street}} {{number}}</td></tr>
+        <tr><td width="25%">mobile</td><td>{{mobile}}</td></tr>
+        <tr><td width="25%">phone</td><td>{{phone}}</td></tr>
+        <tr><td width="25%">fax</td><td>{{fax}}</td></tr>
+        <tr><td width="25%">email</td><td><a href="mailto:{{email}}">{{email}}</a></td></tr>
+        <tr><td width="25%">web</td><td><a href="{{web}}">{{web}}</a></td></tr>
+        <tr><td width="25%">date of birth</td><td>{{dateOfBirth}}</td></tr>
+    </table>
+    {{/doc}}
 </div>

@@ -1,20 +1,18 @@
-<div id="main">
-    <h1>Project details</h1>
+<h1>Project details</h1>
 
-    <div class="dir_contacto">
-        {{#doc}}
-        <h5>{{_id}}</h5>
+<div class="dir_contacto">
+    {{#doc}}
+    <h5>{{_id}}</h5>
 
-        <table width="100%" border="0" id="contactos">
-            <tr><td width="25%">sponsor</td><td><a href="/cogito/_design/cogito/_show/contact/{{sponsor}}">{{sponsor}}</a></td></tr>
-            <tr><td width="25%">manager</td><td><a href="/cogito/_design/cogito/_show/contact/{{manager}}">{{manager}}</a></td></tr>
-            <tr><td width="25%">created</td><td>{{created}}</td></tr>
-            <tr><td width="25%">started</td><td>{{started}}</td></tr>
-            <tr><td width="25%">deadline</td><td>{{deadline}}</td></tr>
-            <tr><td width="25%">summary</td><td>{{summary}}</td></tr>
-            <tr><td width="25%">details</td><td>{{details}}</td></tr>
-            <tr><td width="25%">tags</td><td>{{tags}}</td></tr>
-        </table>
-        {{/doc}}
-    </div>
+    <table width="100%" border="0" id="contactos">
+        <tr><td width="25%">sponsor</td><td><a href="/cogito/_design/cogito/_show/contact/{{sponsor}}">{{sponsor}}</a></td></tr>
+        <tr><td width="25%">manager</td><td><a href="/cogito/_design/cogito/_show/contact/{{manager}}">{{manager}}</a></td></tr>
+        <tr><td width="25%">created</td><td>{{created}}</td></tr>
+        <tr><td width="25%">started</td><td>{{started}}</td></tr>
+        <tr><td width="25%">deadline</td><td>{{deadline}}</td></tr>
+        <tr><td width="25%">summary</td><td>{{summary}}</td></tr>
+        <tr><td width="25%">details</td><td>{{details}}</td></tr>
+        <tr><td width="25%">tags</td><td>{{tags}}</td></tr>
+    </table>
+    {{/doc}}
 </div>

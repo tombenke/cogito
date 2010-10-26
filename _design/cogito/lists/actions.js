@@ -1,6 +1,6 @@
 function( head, req )
 {
-    var listgen = require( "vendor/droids/lib/listgen" );
+    var templating = require( "vendor/droids/lib/templating" );
 
-    listgen.to_template( head, req, this, "actions" );
+    templating.wrap_list_into_template( head, req, this, "actions" );
 }

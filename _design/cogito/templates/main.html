@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    {{>html_head}}
+    
+    <body>
+
+        <div id="wrap">
+
+            {{>header}}
+            {{>top_menu}}
+            {{>left_sidebar}}
+
+            <div id="main">
+                {{{main}}}
+            </div>
+
+            {{>right_sidebar}}
+
+        </div>
+
+        {{>footer}}
+
+    </body>
+    <script src="/cogito/_design/cogito/vendor/couchapp/loader.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    $.couch.app(function(app) {
+      $("#account").evently("account", app);
+      $("#profile").evently("profile", app);
+      $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
+//      $("#items").evently("items", app);
+    });
+    </script>
+</html>

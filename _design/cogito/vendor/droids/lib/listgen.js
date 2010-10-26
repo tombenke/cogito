@@ -95,39 +95,3 @@ exports.send = function( chunk )
 {
     send( chunk + "\n" )
 }
-
-exports.to_template = function( head, req, ddoc, template_name )
-{
-    var Mustache = require( "vendor/couchapp/lib/mustache" );
-    var path = require( "vendor/couchapp/lib/path" ).init( req );
-
-    provides( 'html', function()
-    {
-        var items = [];
-        while( row = getRow() )
-        {
-            var v = row.value;
-            items.push( v );
-        }
-
-        send( Mustache.to_html(
-            ddoc.templates[ template_name ],
-            {
-                header : {assets : path.asset()},
-                top_menu : {},
-                left_sidebar : {},
-                main : {},
-                right_sidebar : {},
-                scripts : {},
-                footer : {},
-                head : head,
-                req : req,
-                rows : head.rows,
-                userCtx : head.userCtx,
-                assets : path.asset(),
-                item_list : items
-            },
-            ddoc.templates.partials
-        ));
-    });
-}

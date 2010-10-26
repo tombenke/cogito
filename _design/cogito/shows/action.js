@@ -1,30 +1,6 @@
 function( doc, req )
 {
-    var ddoc = this;
-    var pageTemplate = ddoc.templates.documentNotFound;
+    var templating = require( "vendor/droids/lib/templating" );
 
-    var Mustache = require( "vendor/couchapp/lib/mustache" );
-    var path = require( "vendor/couchapp/lib/path" ).init( req );
-    
-    if( doc )
-    {
-        pageTemplate = ddoc.templates.action;
-    }
-
-    return Mustache.to_html(
-        pageTemplate,
-        {
-            header : {assets : path.asset()},
-            top_menu : {},
-            left_sidebar : {},
-            main : {},
-            right_sidebar : {},
-            scripts : {},
-            footer : {},
-            doc : doc,
-            docid : JSON.stringify((doc && doc._id) || null),
-            assets : path.asset()
-        },
-        ddoc.templates.partials
-    );
+    templating.wrap_show_into_template( doc, req, this, "action" );
 }
