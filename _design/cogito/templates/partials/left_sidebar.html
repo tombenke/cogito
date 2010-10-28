@@ -15,6 +15,17 @@
                 <div id="profile"></div>
                 <div id="account"></div>
 
+                {{#userCtx}}
+                    <ul>
+                    <li>db: {{db}}</li>
+                    <li>name: {{name}}</li>
+                    <li>roles: {{roles}}</li>
+                    </ul>
+                {{/userCtx}}
+                {{#isAdmin}}
+                    You are an admin user
+                {{/isAdmin}}
+
                 <!--h3>Internal Comunication</h3>
                 <ul class="sidemenu">
 

@@ -5,6 +5,7 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
     var assets = path.asset();
     var listPath = path.list();
     var showPath = path.show();
+    var isAdmin = true;
 
     provides( 'html', function()
     {
@@ -25,7 +26,8 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
                 },
                 left_sidebar : {
                     listPath : listPath,
-                    showPath : showPath
+                    showPath : showPath,
+                    isAdmin : isAdmin
                 },
                 right_sidebar : {},
                 assets : assets,
