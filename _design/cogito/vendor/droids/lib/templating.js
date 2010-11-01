@@ -1,11 +1,52 @@
-exports.wrap_list_into_template = function( head, req, ddoc, template_name )
+exports.setupPageCtx = function ( doc, req, ddoc )
+{
+    var path = require( "vendor/couchapp/lib/path" ).init( req );
+   
+    var pageCtx = {
+        assets : path.asset(),
+        listPath : path.list(),
+        showPath : path.show(),
+        doc : doc,
+        req : req,
+        ddoc : ddoc,
+        userCtx : req.userCtx,
+        pageTitle : "Default Page Title"
+    };
+
+    if( hasRole( req.userCtx, "customer" ) )
+    {
+        pageCtx.isCustomer = true;
+    }
+    else if( hasRole( req.userCtx, "agent" ) )
+    {
+        pageCtx.isAgent = true;
+    }
+    else if( hasRole( req.userCtx, "admin" ) )
+    {
+        pageCtx.isAdmin = true;
+    }
+    else
+    {
+        pageCtx.isGuest = true;
+    }
+
+    return pageCtx;
+}
+
+
+hasRole = function( userCtx, role )
+{
+    return userCtx.roles.indexOf( role ) != -1
+};
+
+/*
+exports.wrap_list_into_template_old = function( head, req, ddoc, template_name )
 {
     var Mustache = require( "vendor/couchapp/lib/mustache" );
     var path = require( "vendor/couchapp/lib/path" ).init( req );
     var assets = path.asset();
     var listPath = path.list();
     var showPath = path.show();
-    var isAdmin = true;
 
     provides( 'html', function()
     {
@@ -19,17 +60,22 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
         send( Mustache.to_html(
             ddoc.templates.main,
             {
-                header : { assets : assets },
-                top_menu : {
+                header_guest : {
+                    assets : assets,
                     listPath : listPath,
                     showPath : showPath
                 },
-                left_sidebar : {
+                main_navigation_guest : {
+                    assets : assets,
                     listPath : listPath,
-                    showPath : showPath,
-                    isAdmin : isAdmin
+                    showPath : showPath
                 },
-                right_sidebar : {},
+                main_content_guest : {
+                    assets : assets,
+                    listPath : listPath,
+                    showPath : showPath
+                },
+                advertisements : {},
                 assets : assets,
                 scripts : { assets : assets },
                 footer : {},
@@ -37,7 +83,7 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
                 req : req,
                 rows : head.rows,
                 userCtx : head.userCtx,
-                main : Mustache.to_html(
+                mainContent : Mustache.to_html(
                     ddoc.templates.partials[ template_name ],
                     {
                         assets : assets,
@@ -52,93 +98,98 @@ exports.wrap_list_into_template = function( head, req, ddoc, template_name )
         ));
     });
 }
+*/
 
-exports.wrap_show_into_template = function( doc, req, ddoc, template_name )
+exports.wrap_list_into_template = function( pageCtx )
 {
-    var pageTemplate = ddoc.templates.partials.documentNotFound;
-
     var Mustache = require( "vendor/couchapp/lib/mustache" );
-    var path = require( "vendor/couchapp/lib/path" ).init( req );
-    var assets = path.asset();
-    var listPath = path.list();
-    var showPath = path.show();
 
-    if( doc )
+    provides( 'html', function()
     {
-        pageTemplate = ddoc.templates.partials[ template_name ];
-    }
 
-    send( Mustache.to_html(
-        ddoc.templates.main,
+        pageCtx.list_items = [];
+
+        while( row = getRow() )
         {
-            header : { assets : assets },
-            top_menu : {
-                listPath : listPath,
-                showPath : showPath
-            },
-            left_sidebar : {
-                listPath : listPath,
-                showPath : showPath
-            },
-            right_sidebar : {},
-            assets : assets,
-            scripts : { assets : assets },
-            footer : {},
-            listPath : listPath,
-            showPath : showPath,
-            main : Mustache.to_html(
-                pageTemplate,
-                {
-                    assets : assets,
-                    listPath : listPath,
-                    showPath : showPath,
-                    doc : doc,
-                    docid : JSON.stringify((doc && doc._id) || null)
-                },
-                ddoc.templates.partials
-            )
-        },
-        ddoc.templates.partials
-    ));
+            var v = row.value;
+            pageCtx.list_items.push( v );
+        }
+
+        var pageTemplate = pageCtx.ddoc.templates.partials[ pageCtx.mainContentName ];
+
+        var html = Mustache.to_html(
+            pageTemplate,
+            pageCtx,
+            pageCtx.ddoc.templates.partials
+        );
+
+        pageCtx.mainContent = html;
+
+        exports.wrap_into_template( pageCtx );
+    });
 }
 
-exports.wrap_mdtext_into_template = function( doc, req, ddoc, md_name )
+
+exports.wrap_show_into_template = function( pageCtx )
 {
-    var pageTemplate = ddoc.templates.partials.documentNotFound;
-
     var Mustache = require( "vendor/couchapp/lib/mustache" );
-    var path = require( "vendor/couchapp/lib/path" ).init( req );
-    var assets = path.asset();
-    var listPath = path.list();
-    var showPath = path.show();
-    var markdown = require( "vendor/couchapp/lib/markdown" );
 
-    var text = ddoc.mdtext[ md_name ];
-    var html = markdown.encode( text );
+    var pageTemplate = pageCtx.ddoc.templates.partials.documentNotFound;
 
-    if( doc )
+    if( pageCtx.doc )
     {
-        pageTemplate = ddoc.templates.partials[ template_name ];
+        pageTemplate = pageCtx.ddoc.templates.partials[ pageCtx.mainContentName ];
     }
 
+    var html = Mustache.to_html(
+        pageTemplate,
+        pageCtx,
+        pageCtx.ddoc.templates.partials
+    );
+
+    pageCtx.mainContent = html;
+
+    exports.wrap_into_template( pageCtx );
+}
+
+
+exports.wrap_mdtext_into_template = function( pageCtx )
+{
+    var Mustache = require( "vendor/couchapp/lib/mustache" );
+
+    var markdown = require( "vendor/couchapp/lib/markdown" );
+    var text = pageCtx.ddoc.mdtext[ pageCtx.mainContentName ];
+    var html = markdown.encode( text );
+
+    pageCtx.mainContent = html;
+
+    exports.wrap_into_template( pageCtx );
+}
+
+
+exports.wrap_partial_into_template = function( pageCtx )
+{
+    var Mustache = require( "vendor/couchapp/lib/mustache" );
+
+    var html = Mustache.to_html(
+        pageCtx.ddoc.templates.partials[ pageCtx.mainContentName ],
+        pageCtx,
+        pageCtx.ddoc.templates.partials
+    );
+
+    pageCtx.mainContent = html;
+
+    exports.wrap_into_template( pageCtx );
+}
+
+
+exports.wrap_into_template = function( pageCtx )
+{
+    var Mustache = require( "vendor/couchapp/lib/mustache" );
+
     send( Mustache.to_html(
-        ddoc.templates.main,
-        {
-            header : { assets : assets },
-            top_menu : {
-                listPath : listPath,
-                showPath : showPath
-            },
-            left_sidebar : {
-                listPath : listPath,
-                showPath : showPath
-            },
-            right_sidebar : {},
-            assets : assets,
-            scripts : { assets : assets },
-            footer : {},
-            main : html
-        },
-        ddoc.templates.partials
+        pageCtx.ddoc.templates.main,
+        pageCtx,
+        pageCtx.ddoc.templates.partials
     ));
 }
