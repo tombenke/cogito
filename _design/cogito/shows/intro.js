@@ -1,6 +1,10 @@
 function( doc, req )
 {
     var templating = require( "vendor/droids/lib/templating" );
+    var pageCtx = templating.setupPageCtx( doc, req, this );
 
-    templating.wrap_mdtext_into_template( doc, req, this, "intro" );
+    pageCtx.pageTitle = "Home";
+    pageCtx.mainContentName = "intro"
+
+    templating.wrap_mdtext_into_template( pageCtx );
 }
