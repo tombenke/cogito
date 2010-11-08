@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+f<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
     {{>html_head}}
@@ -21,6 +21,20 @@
             </div>
             <!-- main ends -->
 
+            <!--
+            <div id="testTabs">
+                <ul>
+                    <li><a href="#tab1">Personal info</a></li>
+                    <li><a href="#tab2">Address</a></li>
+                    <li><a href="#tab3">Contact info</a></li>
+                </ul>
+
+                <div id="tab1">tab-1</div>
+                <div id="tab2">tab-2</div>
+                <div id="tab3">tab-3</div>
+            </div>
+            -->
+
 		<!-- content-wrap ends here -->
 		</div>
 
@@ -30,16 +44,20 @@
         </div>
 
     </body>
-    {{>scripts}}
-    <script type="text/javascript" charset="utf-8">
-    $.couch.app(function(app) {
-//      $("#account").evently("account", app);
-//      $("#profile").evently("profile", app);
-      $("#account").evently( app.ddoc.vendor.droids.evently.account );
-      $("#profile").evently( app.ddoc.vendor.droids.evently.profile );
-      $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
 
-      $("#newContactForm").evently( app.ddoc.vendor.droids.evently.contactForm, app );
-    });
+    {{>scripts}}
+
+    <script type="text/javascript" src="scripts/jquery-ui-1.8.2.custom.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $.couch.app(function(app) {
+          /*
+          $("#account").evently( app.ddoc.vendor.droids.evently.account );
+          $("#profile").evently( app.ddoc.vendor.droids.evently.profile );
+          $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
+           */
+          $("#newContactForm").evently( app.ddoc.vendor.droids.evently.contactForm, app );
+          $('#accordion-1').accordion();
+        });
     </script>
 </html>

@@ -10,10 +10,10 @@ couchapp_load([
   "/_utils/script/json2.js",
   "/_utils/script/jquery.js",
   "/_utils/script/jquery.couch.js",
-  "/cogito/_design/cogito/vendor/couchapp/jquery.couch.app.js",
-  "/cogito/_design/cogito/vendor/couchapp/jquery.couch.app.util.js",
-  "/cogito/_design/cogito/vendor/couchapp/jquery.mustache.js",
-  "/cogito/_design/cogito/vendor/couchapp/jquery.evently.js"
+  "vendor/couchapp/jquery.couch.app.js",
+  "vendor/couchapp/jquery.couch.app.util.js",
+  "vendor/couchapp/jquery.mustache.js",
+  "vendor/couchapp/jquery.evently.js"
 ]);
 
 alert('Hello there.');
